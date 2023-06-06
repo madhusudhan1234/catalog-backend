@@ -1,0 +1,95 @@
+openapi: 3.0.0
+info:
+  title: Image Add and Listing
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+paths:
+  /images:
+    get:
+      summary: Search images by title, Listing of Images with pagination
+      parameters:
+        - name: page
+          in: query
+          description: Page number for pagination
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+        - name: pageSize
+          in: query
+          description: Number of items per page for pagination
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+        - name: search
+          in: query
+          description: Search query to filter images by title or description
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Images found successfully
+        "400":
+          description: Bad request
+        "500":
+          description: Internal server error
+          post:
+      summary: Upload an image with title and description
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: Title of the image
+                description:
+                  type: string
+                  description: Description of the image
+                image:
+                  type: string
+                  format: binary
+                  description: Image file to upload
+              required:
+                - title
+                - image
+      responses:
+        '200':
+          description: Image uploaded successfully
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+    post:
+      summary: Upload an image with title and description
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: Title of the image
+                description:
+                  type: string
+                  description: Description of the image
+                image:
+                  type: string
+                  format: binary
+                  description: Image file to upload
+              required:
+                - title
+                - image
+      responses:
+        '200':
+          description: Image uploaded successfully
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
