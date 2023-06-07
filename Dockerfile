@@ -6,7 +6,6 @@ WORKDIR /app
 # Install app dependencies
 COPY package.json yarn.lock ./
 RUN yarn install
-RUN yarn global add ts-node
-
+RUN yarn global add ts-node typescript nodemon
 # Copy source files
 COPY . .
