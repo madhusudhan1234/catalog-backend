@@ -32,6 +32,7 @@ services:
       - DB_DATABASE=${DB_DATABASE}
     depends_on:
       - postgres
+    command: yarn dev
     ports: 
       - "${APP_PORT}:3000"
     networks:
