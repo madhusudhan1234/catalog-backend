@@ -13,7 +13,8 @@ Node JS Catalog backend
   DB_USERNAME = "postgres"  
   DB_PASSWORD = "postgres"
   DB_DATABASE = "catalog"
-  BASEURL="http://localhost:3000"```
+  BASEURL="http://localhost:3000"
+  ```
 
 - Similarly, clone frontend
   - git clone https://github.com/madhusudhan1234/catalog-frontend.git
