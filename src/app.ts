@@ -1,8 +1,7 @@
-import express, { Express, Request, Response } from "express";
-const path = require("path");
-
 import bodyParser from "body-parser";
 import cors from "cors";
+import * as dotenv from "dotenv";
+import express, { Express, Request, Response } from "express";
 import { ErrorHandler } from "./http/middlewares/ErrorHandler";
 import authRoute from "./routes/auth";
 import categoryRoute from "./routes/categories";
@@ -10,12 +9,15 @@ import imagesRoute from "./routes/images";
 import productRoute from "./routes/products";
 import subCategoryRoute from "./routes/subcategories";
 import subscriberRoute from "./routes/subscribers";
+const path = require("path");
+
+dotenv.config();
 
 const app: Express = express();
 
 app.use(
   cors({
-    origin: `${process.env.BASEURL}`,
+    origin: process.env.BASEURL,
     credentials: true,
   })
 );
