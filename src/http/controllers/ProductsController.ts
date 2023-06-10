@@ -1,4 +1,5 @@
 import { validate } from "class-validator";
+import * as dotenv from "dotenv";
 import { Request, Response } from "express";
 import { ResponseUtil } from "../../../utils/Response";
 import { Paginator } from "../../database/Paginator";
@@ -6,7 +7,7 @@ import { AppDataSource } from "../../database/data-source";
 import { Product } from "../../database/entities/Product";
 import { ProductDTO } from "../dtos/ProductDTO";
 const url = require("url");
-
+dotenv.config();
 export class ProductsController {
   async get(req: Request, res: Response) {
     const builder = await AppDataSource.getRepository(Product)
@@ -38,7 +39,8 @@ export class ProductsController {
 
     const imagesWithFullUrls = product?.images?.map((image) => {
       const fullUrl = url.format({
-        protocol: "https",
+        protocol:
+          process.env.BASEURL == "http://localhost:3000" ? "http" : "https",
         host: req.get("host"),
         pathname: `/uploads/images/${image.name}`,
       });
