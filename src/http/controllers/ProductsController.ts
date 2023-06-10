@@ -38,7 +38,7 @@ export class ProductsController {
 
     const imagesWithFullUrls = product?.images?.map((image) => {
       const fullUrl = url.format({
-        protocol: req.protocol,
+        protocol: "https",
         host: req.get("host"),
         pathname: `/uploads/images/${image.name}`,
       });
