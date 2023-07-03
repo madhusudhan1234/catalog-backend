@@ -12,7 +12,9 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_DATABASE || "imagesdb",
   logging: true,
   synchronize: false,
-  entities: ["src/database/entities/**/*.ts"],
+  // entities: ["src/database/entities/**/*.ts"],
   subscribers: [],
-  migrations: ["src/database/migrations/*.ts"],
+  // migrations: ["src/database/migrations/*.ts"],
+  migrations: [__dirname + "/migrations/*.{ts,js}"],
+  entities: [__dirname + "/entities/*.{ts,js}"],
 });
