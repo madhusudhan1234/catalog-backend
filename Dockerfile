@@ -1,10 +1,30 @@
+FROM node:19-alpine as build
+
+WORKDIR /src/catalog-service
+
+COPY package*.json ./
+
+RUN yarn install
+
+COPY . .
+
+RUN yarn build
+
+
+
+
+# Stage 2: Run the application
+
 FROM node:19-alpine
 
-# Create app directory
-WORKDIR /app
+WORKDIR /src/catalog-service
 
-# Install app dependencies
-COPY package.json yarn.lock ./
+COPY --from=build /src/catalog-service/dist ./dist
+
+COPY package*.json ./
+
 RUN yarn install
-# Copy source files
-COPY . .
+
+EXPOSE 3000
+
+CMD ["yarn", "start"]
