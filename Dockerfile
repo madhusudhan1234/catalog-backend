@@ -1,30 +1,21 @@
-FROM node:19-alpine as build
+FROM node:19-alpine as development
 
-WORKDIR /src/catalog-service
-
-COPY package*.json ./
-
+# Create app directory
+WORKDIR /app
+COPY package.json yarn.lock ./
 RUN yarn install
-
+RUN yarn global add ts-node
 COPY . .
 
 RUN yarn build
 
+FROM node:19-alpine as production
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
 
-
-
-# Stage 2: Run the application
-
-FROM node:19-alpine
-
-WORKDIR /src/catalog-service
-
-COPY --from=build /src/catalog-service/dist ./dist
-
-COPY package*.json ./
-
-RUN yarn install
-
-EXPOSE 3000
-
-CMD ["yarn", "start"]
+WORKDIR /app
+COPY package.json yarn.lock ./
+RUN yarn install --only=production
+COPY . .
+COPY --from=development /app/dist ./dist
+CMD yarn prod 
