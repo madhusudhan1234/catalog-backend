@@ -22,7 +22,7 @@ export class ProductDTO {
   @IsNotEmpty()
   @IsString()
   @MinLength(3)
-  subcategoryId: string;
+  collectionId: string;
 
   @IsOptional()
   @IsString()

@@ -1,16 +1,11 @@
-import {
-  MigrationInterface,
-  QueryRunner,
-  Table,
-  TableForeignKey,
-} from "typeorm";
-import { CATEGORIES, SUBCATEGORIES } from "../../constants/DBTable";
+import { MigrationInterface, QueryRunner, Table } from "typeorm";
+import { COLLECTIONS } from "../../constants/DBTable";
 
-export class CreateSubCategoryTable1683137051315 implements MigrationInterface {
+export class CreateCollectionTable1683137051315 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: SUBCATEGORIES,
+        name: COLLECTIONS,
         columns: [
           {
             name: "id",
@@ -30,10 +25,6 @@ export class CreateSubCategoryTable1683137051315 implements MigrationInterface {
             isNullable: true,
           },
           {
-            name: "categoryId",
-            type: "uuid",
-          },
-          {
             name: "createdAt",
             type: "timestamp",
             default: "now()",
@@ -48,20 +39,9 @@ export class CreateSubCategoryTable1683137051315 implements MigrationInterface {
         ],
       })
     );
-
-    await queryRunner.createForeignKey(
-      SUBCATEGORIES,
-      new TableForeignKey({
-        columnNames: ["categoryId"],
-        referencedColumnNames: ["id"],
-        referencedTableName: CATEGORIES,
-        onDelete: "CASCADE",
-      })
-    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    // await queryRunner.dropForeignKey(SUBCATEGORIES, "categoryId");
-    await queryRunner.dropTable(SUBCATEGORIES);
+    await queryRunner.dropTable(COLLECTIONS);
   }
 }

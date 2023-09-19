@@ -6,11 +6,7 @@ import {
   MinLength,
 } from "class-validator";
 
-export class SubCategoryDTO {
-  @IsNotEmpty()
-  @IsString()
-  categoryId: string;
-
+export class CollectionDTO {
   @IsNotEmpty()
   @IsString()
   @MinLength(3)

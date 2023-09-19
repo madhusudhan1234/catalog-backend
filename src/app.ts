@@ -4,10 +4,9 @@ import * as dotenv from "dotenv";
 import express, { Express, Request, Response } from "express";
 import { ErrorHandler } from "./http/middlewares/ErrorHandler";
 import authRoute from "./routes/auth";
-import categoryRoute from "./routes/categories";
+import collectionRoute from "./routes/collections";
 import imagesRoute from "./routes/images";
 import productRoute from "./routes/products";
-import subCategoryRoute from "./routes/subcategories";
 import subscriberRoute from "./routes/subscribers";
 const path = require("path");
 
@@ -26,8 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/uploads", express.static(path.join(__dirname, "..", "uploads")));
 
 app.use("/images", imagesRoute);
-app.use("/categories", categoryRoute);
-app.use("/subcategories", subCategoryRoute);
+app.use("/collections", collectionRoute);
 app.use("/subscribers", subscriberRoute);
 app.use("/products", productRoute);
 app.use("/auth", authRoute);

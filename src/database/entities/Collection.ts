@@ -6,12 +6,12 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { CATEGORIES } from "../../constants/DBTable";
-import { SubCategory } from "./SubCategory";
+import { COLLECTIONS } from "../../constants/DBTable";
+import { Product } from "./Product";
 
-@Entity(CATEGORIES)
-export class Category {
-  @PrimaryGeneratedColumn()
+@Entity(COLLECTIONS)
+export class Collection {
+  @PrimaryGeneratedColumn("uuid")
   id: string;
 
   @Column({ nullable: false })
@@ -20,8 +20,8 @@ export class Category {
   @Column({ nullable: false })
   description: string;
 
-  @OneToMany(() => SubCategory, (subcategory) => subcategory.category)
-  subcategories: SubCategory[];
+  @OneToMany(() => Product, (product) => product.collection)
+  products: Product[];
 
   @CreateDateColumn()
   createdAt: Date;
