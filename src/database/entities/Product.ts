@@ -10,8 +10,8 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 import { PRODUCTS } from "../../constants/DBTable";
+import { Collection } from "./Collection";
 import { Image } from "./Image";
-import { SubCategory } from "./SubCategory";
 
 @Entity(PRODUCTS)
 export class Product {
@@ -27,16 +27,12 @@ export class Product {
   @Column({ nullable: true })
   description: string;
 
-  @ManyToOne(() => SubCategory, (subCategory) => subCategory.products)
-  @JoinColumn({ name: "subcategoryId" })
-  subCategory: SubCategory;
+  @ManyToOne(() => Collection, (collection) => collection.products)
+  @JoinColumn({ name: "collectionId" })
+  collection: Collection;
 
   @Column({ nullable: false })
-  subcategoryId: string;
-
-  // @ManyToMany(() => Image)
-  // @JoinTable({ name: "product_image" })
-  // images: Image[];
+  collectionId: string;
 
   @ManyToMany(() => Image, (image) => image.products)
   @JoinTable({

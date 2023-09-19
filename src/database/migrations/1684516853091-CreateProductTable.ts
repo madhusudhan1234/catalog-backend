@@ -4,7 +4,7 @@ import {
   Table,
   TableForeignKey,
 } from "typeorm";
-import { PRODUCTS, SUBCATEGORIES } from "../../constants/DBTable";
+import { COLLECTIONS, PRODUCTS } from "../../constants/DBTable";
 
 export class CreateProductTable1684516853091 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
@@ -35,7 +35,7 @@ export class CreateProductTable1684516853091 implements MigrationInterface {
             isNullable: true,
           },
           {
-            name: "subcategoryId",
+            name: "collectionId",
             type: "uuid",
             isNullable: false,
           },
@@ -58,9 +58,9 @@ export class CreateProductTable1684516853091 implements MigrationInterface {
     await queryRunner.createForeignKey(
       PRODUCTS,
       new TableForeignKey({
-        columnNames: ["subcategoryId"],
+        columnNames: ["collectionId"],
         referencedColumnNames: ["id"],
-        referencedTableName: SUBCATEGORIES,
+        referencedTableName: COLLECTIONS,
         onDelete: "CASCADE",
       })
     );
