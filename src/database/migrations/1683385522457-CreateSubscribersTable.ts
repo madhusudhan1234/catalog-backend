@@ -23,19 +23,6 @@ export class CreateSubscribersTable1683385522457 implements MigrationInterface {
             type: "varchar",
           },
           {
-            name: "country",
-            type: "varchar",
-          },
-          {
-            name: "phone",
-            type: "varchar",
-          },
-          {
-            name: "message",
-            type: "text",
-            isNullable: true,
-          },
-          {
             name: "createdAt",
             type: "timestamp",
             default: "now()",

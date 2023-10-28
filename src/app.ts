@@ -24,11 +24,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/uploads", express.static(path.join(__dirname, "..", "uploads")));
 
-app.use("/images", imagesRoute);
-app.use("/collections", collectionRoute);
-app.use("/subscribers", subscriberRoute);
-app.use("/products", productRoute);
-app.use("/auth", authRoute);
+app.use("/api/images", imagesRoute);
+app.use("/api/collections", collectionRoute);
+app.use("/api/subscribers", subscriberRoute);
+app.use("/api/products", productRoute);
+app.use("/api/auth", authRoute);
 app.use("*", (req: Request, res: Response) => {
   return res.status(404).json({
     success: false,
