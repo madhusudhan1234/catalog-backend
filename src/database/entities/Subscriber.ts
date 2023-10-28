@@ -18,15 +18,6 @@ export class Subscriber {
   @Column({ nullable: false })
   email: string;
 
-  @Column({ nullable: true })
-  country: string;
-
-  @Column({ nullable: true })
-  phone: string;
-
-  @Column({ nullable: true })
-  message: string;
-
   @CreateDateColumn()
   createdAt: Date;
 
