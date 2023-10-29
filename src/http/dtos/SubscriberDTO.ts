@@ -1,7 +1,6 @@
 import {
   IsEmail,
   IsNotEmpty,
-  IsOptional,
   IsString,
   MaxLength,
   MinLength,
@@ -19,18 +18,4 @@ export class SubscriberDTO {
   @IsEmail()
   @MaxLength(200)
   email: string;
-
-  @IsOptional()
-  @IsString()
-  country: string;
-
-  @IsOptional()
-  @IsString()
-  @MaxLength(20)
-  phone: string;
-
-  @IsOptional()
-  @IsString()
-  @MaxLength(20)
-  message: string;
 }
